@@ -25,5 +25,4 @@ function set_buffer_properties()
   if not buffer.use_tabs then
     buffer.indent = 4
   end
---  events.connect('update_ui', word_count, 1)
 end

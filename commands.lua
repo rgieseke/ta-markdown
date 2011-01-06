@@ -29,17 +29,51 @@ local function header(level)
   if count == 0 then
     b:home()
     b:add_text(string.rep('#', level)..' ')
-    b:goto_pos(pos + level + 1)
+    b:line_end()
   else
     b:replace_sel(sel)
+    b:line_end()
   end
   b:end_undo_action()
 end
 
-local m_editing = _m.textadept.editing
+local function remove_header()
+  local b = buffer
+  local pos = b.current_pos
+  b:begin_undo_action()
+  _m.textadept.editing.select_line()
+  sel = b:get_sel_text()
+  sel = sel:gsub('#+ ', '')
+  b:replace_sel(sel)
+  b:line_end()
+  b:end_undo_action()
+end
 
-m_editing.enclosure.star = { left = '*', right = '*' }
-m_editing.enclosure.underline = { left = "_", right = "_" }
+
+local function enclose_selection(left, right)
+  if buffer.get_sel_text() == '' then
+    return
+  else
+    m_editing.enclose(left, right)
+  end
+end
+
+local function paste_or_grow_enclose (left, right)
+  if buffer:get_sel_text() == '' then
+    buffer:add_text(left)
+    return
+  else
+    start = buffer.anchor
+    stop = buffer.current_pos
+    if start > stop then
+      start, stop = stop, start
+    end
+    add_start = #left
+    add_stop = #right
+    m_editing.enclose(left, right)
+    buffer:set_sel(start, stop + add_start + add_stop)
+  end
+end
 
 local function word_count()
   local buffer = buffer
@@ -67,6 +101,7 @@ if type(keys) == 'table' then
     },
     ['a='] = { underline, '=' },
     ['a-'] = { underline, '-' },
+    ['a0'] = { remove_header },
     ['a1'] = { header, 1 },
     ['a2'] = { header, 2 },
     ['a3'] = { header, 3 },
@@ -74,8 +109,15 @@ if type(keys) == 'table' then
     ['a5'] = { header, 5 },
     ['a6'] = { header, 6 },
     ac = { -- enclose in
-    ['*'] = { m_editing.enclose, 'star' },
-    ["_"] = { m_editing.enclose, 'underline' },
+      ['*'] = { m_editing.enclose, '*', '*' },
+      ["_"] = { m_editing.enclose, '_', '_' },
+--      ["`"] = { m_editing.enclose, '`', '`'}
     },
+    ["*"] = { enclose_selection, "*", "*" },
+    ['_'] = { enclose_selection, '_', '_' },
+    ['`'] = { enclose_selection, '`', '`' },
+    ["c*"] = { paste_or_grow_enclose, "*", "*" },
+    ['c_'] = { paste_or_grow_enclose, '_', '_' },
+--    [''] = { paste_or_grow_enclose, '`', '`' },
   }
 end
