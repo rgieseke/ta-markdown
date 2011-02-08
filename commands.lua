@@ -51,7 +51,7 @@ end
 
 
 local function enclose_selection(left, right)
-  if buffer.get_sel_text() == '' then
+  if buffer:get_sel_text() == '' then
     return
   else
     m_editing.enclose(left, right)
