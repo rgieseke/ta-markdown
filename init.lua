@@ -158,7 +158,7 @@ if type(_G.snippets) == 'table' then
     rl = '[%1(example)][%2(ref)]',
     id = '[%1(ref)]: %2(http://example.com/)',
     -- code
-    c = '%`%0%`',
+    c = '`%0`',
     -- image
     i = '![%1(Alt text)](%2(/path/to/img.jpg "Optional title"))',
   }
