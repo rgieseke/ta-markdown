@@ -1,5 +1,5 @@
 -- A markdown module for the
--- [Textadept](http://code.google.com/p/textadept/) editor.
+-- [Textadept](http://foicica.com/textadept/) editor.
 -- It provides utilities for writing
 -- [Markdown](http://daringfireball.net/projects/markdown/).<br>
 --
