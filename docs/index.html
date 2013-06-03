@@ -140,11 +140,11 @@ Match <code>&lt;</code> for embedded HTML, don't match <code>'</code>.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre><span class="k">function</span> <span class="nf">M.set_buffer_properties</span>()
-  <span class="k">if</span> <span class="o">not</span> buffer.use_tabs <span class="k">then</span>
-    buffer.indent = 4
+  <div class="highlight"><pre>events.connect(events.LANGUAGE_MODULE_LOADED, <span class="k">function</span>(lang)
+  <span class="k">if</span> lang == <span class="s">'markdown'</span> <span class="k">then</span>
+    buffer.tab_width = 4
   <span class="k">end</span>
-<span class="k">end</span>
+<span class="k">end</span>)
 
 </pre></div>
 </td>
