@@ -34,11 +34,11 @@ m_editing.char_matches.markdown = {
 }
 
 -- Sets default buffer properties for Markdown files.
-function M.set_buffer_properties()
-  if not buffer.use_tabs then
-    buffer.indent = 4
+events.connect(events.LANGUAGE_MODULE_LOADED, function(lang)
+  if lang == 'markdown' then
+    buffer.tab_width = 4
   end
-end
+end)
 
 
 -- ## Commands
