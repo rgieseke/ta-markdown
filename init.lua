@@ -34,7 +34,7 @@ m_editing.char_matches.markdown = {
 }
 
 -- Sets default buffer properties for Markdown files.
-events.connect(events.LANGUAGE_MODULE_LOADED, function(lang)
+events.connect(events.LEXER_LOADED, function(lang)
   if lang == 'markdown' then
     buffer.tab_width = 4
   end
