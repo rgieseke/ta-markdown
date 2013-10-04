@@ -22,7 +22,7 @@ local M = {}
 -- ## Settings
 
 -- Local variables.
-local m_editing, m_run = _M.textadept.editing, _M.textadept.run
+local m_editing, m_run = textadept.editing, textadept.run
 -- Blockquotes.
 m_editing.comment_string.markdown = '> '
 -- Run command (using file extension).
@@ -118,7 +118,7 @@ function word_count()
     count = count + 1
   end
   status = 'Words: %d - Chars: %d'
-  gui.statusbar_text = status:format(count, buffer.length)
+  ui.statusbar_text = status:format(count, buffer.length)
 end
 
 
