@@ -112,7 +112,7 @@ end
 
 -- Markdown-specific key commands.
 keys.markdown = {
-  [keys.LANGUAGE_MODULE_PREFIX] = {
+  [not OSX and not CURSES and 'cl' or 'ml'] = {
     -- Open this module for editing: `Alt/⌘-L` `M`
     m = { io.open_file,
         (_USERHOME..'/modules/markdown/init.lua') },
