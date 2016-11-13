@@ -25,16 +25,16 @@ local M = {}
 local editing, run = textadept.editing
 -- Blockquotes.
 editing.comment_string.markdown = '> '
--- Auto-matching chars.<br>
--- Match `<` for embedded HTML, don't match `'`.
-editing.char_matches.markdown = {
-  [40] = ')', [91] = ']', [123] = '}', [34] = '"', [60] = '>'
-}
 
 -- Sets default buffer properties for Markdown files.
 events.connect(events.LEXER_LOADED, function(lang)
   if lang == 'markdown' then
     buffer.tab_width = 4
+    -- Auto-matching chars.<br>
+    -- Match `<` for embedded HTML, don't match `'`.
+    editing.auto_pairs[60] = '>'
+  else
+    editing.auto_pairs[60] = nil
   end
 end)
 
