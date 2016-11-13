@@ -114,41 +114,27 @@ end
 keys.markdown = {
   [not OSX and not CURSES and 'cl' or 'ml'] = {
     -- Open this module for editing: `Alt/⌘-L` `M`
-    m =
-      function() io.open_file(_USERHOME..'/modules/markdown/init.lua') end,
+    m = function() io.open_file(_USERHOME..'/modules/markdown/init.lua') end,
     --  Show char and word count: `Alt/⌘-L` `I`
-    i =
-      function() word_count() end,
+    i = function() word_count() end,
   },
   -- Underline current line: `Alt/⌘ ='
-  [OSX and 'm=' or 'a='] =
-    function() M.underline '=' end,
+  [OSX and 'm=' or 'a='] = function() M.underline '=' end,
   -- Underline current line: `Alt/⌘ -`
-  [OSX and 'm-' or 'a-'] =
-    function() M.underline '-' end,
+  [OSX and 'm-' or 'a-'] = function() M.underline '-' end,
   -- Change header level: `Alt/⌘-0 … 6`
-  [OSX and 'm0' or 'a0'] =
-    function() M.remove_header() end,
-  [OSX and 'm1' or 'a1'] =
-    function() M.header(1) end,
-  [OSX and 'm2' or 'a2'] =
-    function() M.header(2) end,
-  [OSX and 'm3' or 'a3'] =
-    function() M.header(3) end,
-  [OSX and 'm4' or 'a4'] =
-    function() M.header(4) end,
-  [OSX and 'm5' or 'a5'] =
-    function() M.header(5) end,
-  [OSX and 'm6' or 'a6'] =
-    function() M.header(6) end,
+  [OSX and 'm0' or 'a0'] = function() M.remove_header() end,
+  [OSX and 'm1' or 'a1'] = function() M.header(1) end,
+  [OSX and 'm2' or 'a2'] = function() M.header(2) end,
+  [OSX and 'm3' or 'a3'] = function() M.header(3) end,
+  [OSX and 'm4' or 'a4'] = function() M.header(4) end,
+  [OSX and 'm5' or 'a5'] = function() M.header(5) end,
+  [OSX and 'm6' or 'a6'] = function() M.header(6) end,
   -- Enclose selected text or previous word:<br>
   -- `Alt/⌘ *`, `Alt/⌘ _`, ``Ctrl Alt/⌘ ` ``
-  [OSX and 'm*' or 'a*'] =
-    function() editing.enclose("*", "*") end,
-  [OSX and 'm_' or 'a_'] =
-    function() editing.enclose("_", "_") end,
-  [OSX and 'cm`' or 'ca`'] =
-    function() editing.enclose("`", "`") end,
+  [OSX and 'm*' or 'a*'] = function() editing.enclose("*", "*") end,
+  [OSX and 'm_' or 'a_'] = function() editing.enclose("_", "_") end,
+  [OSX and 'cm`' or 'ca`'] = function() editing.enclose("`", "`") end,
 }
 
 -- ## Snippets.
