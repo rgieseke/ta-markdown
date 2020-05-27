@@ -32,7 +32,9 @@ events.connect(events.LEXER_LOADED, function(lang)
     buffer.tab_width = 4
     -- Auto-matching chars.<br>
     -- Match `<` for embedded HTML, don't match `'`.
-    editing.auto_pairs[60] = '>'
+    if editing.auto_pairs then 
+      editing.auto_pairs[60] = '>'
+    end
   else
     editing.auto_pairs[60] = nil
   end
