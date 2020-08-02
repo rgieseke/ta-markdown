@@ -32,9 +32,13 @@ events.connect(events.LEXER_LOADED, function(lang)
     buffer.tab_width = 4
     -- Auto-matching chars.<br>
     -- Match `<` for embedded HTML, don't match `'`.
-    editing.auto_pairs[60] = '>'
+    if textadept.editing.auto_pairs then
+      editing.auto_pairs[60] = '>'
+    end
   else
-    editing.auto_pairs[60] = nil
+    if textadept.editing.auto_pairs then
+      editing.auto_pairs[60] = nil
+    end
   end
 end)
 
@@ -112,29 +116,29 @@ end
 
 -- Markdown-specific key commands.
 keys.markdown = {
-  [not OSX and not CURSES and 'cl' or 'ml'] = {
+  [not OSX and not CURSES and 'ctrl+l' or 'cmd+l'] = {
     -- Open this module for editing: `Alt/⌘-L` `M`
     m = function() io.open_file(_USERHOME..'/modules/markdown/init.lua') end,
     --  Show char and word count: `Alt/⌘-L` `I`
     i = function() word_count() end,
   },
   -- Underline current line: `Alt/⌘ ='
-  [OSX and 'm=' or 'a='] = function() M.underline '=' end,
+  [OSX and 'cmd+=' or 'alt+='] = function() M.underline '=' end,
   -- Underline current line: `Alt/⌘ -`
-  [OSX and 'm-' or 'a-'] = function() M.underline '-' end,
+  [OSX and 'cmd+-' or 'alt+-'] = function() M.underline '-' end,
   -- Change header level: `Alt/⌘-0 … 6`
-  [OSX and 'm0' or 'a0'] = function() M.remove_header() end,
-  [OSX and 'm1' or 'a1'] = function() M.header(1) end,
-  [OSX and 'm2' or 'a2'] = function() M.header(2) end,
-  [OSX and 'm3' or 'a3'] = function() M.header(3) end,
-  [OSX and 'm4' or 'a4'] = function() M.header(4) end,
-  [OSX and 'm5' or 'a5'] = function() M.header(5) end,
-  [OSX and 'm6' or 'a6'] = function() M.header(6) end,
+  [OSX and 'cmd+0' or 'alt+0'] = function() M.remove_header() end,
+  [OSX and 'cmd+1' or 'alt+1'] = function() M.header(1) end,
+  [OSX and 'cmd+2' or 'alt+2'] = function() M.header(2) end,
+  [OSX and 'cmd+3' or 'alt+3'] = function() M.header(3) end,
+  [OSX and 'cmd+4' or 'alt+4'] = function() M.header(4) end,
+  [OSX and 'cmd+5' or 'alt+5'] = function() M.header(5) end,
+  [OSX and 'cmd+6' or 'alt+6'] = function() M.header(6) end,
   -- Enclose selected text or previous word:<br>
   -- `Alt/⌘ *`, `Alt/⌘ _`, ``Ctrl Alt/⌘ ` ``
-  [OSX and 'm*' or 'a*'] = function() editing.enclose("*", "*") end,
-  [OSX and 'm_' or 'a_'] = function() editing.enclose("_", "_") end,
-  [OSX and 'cm`' or 'ca`'] = function() editing.enclose("`", "`") end,
+  [OSX and 'cmd+*' or 'alt+*'] = function() editing.enclose("*", "*") end,
+  [OSX and 'cmd+_' or 'alt+_'] = function() editing.enclose("_", "_") end,
+  [OSX and 'ctrl+cmd`' or 'ctrl+alt`'] = function() editing.enclose("`", "`") end,
 }
 
 -- ## Snippets.
